@@ -130,15 +130,62 @@ def task2_3():
 # task2_3()
 
 def task2_4():
-    from collections import ChainMap
-
     dict_user1 = {'name': 'Adam', 'assignment': [82, 56, 44, 30], 'test': [78, 77], 'lab': [78.2, 77.2],
                   'final_grade': 70.25}
     dict_user2 = {'name': 'Kevin', 'assignment': [82, 30], 'test': [], 'lab': [78.2], 'final_grade': 0}
 
-    students = {dict_user1['name']: dict_user1, dict_user2['name']: dict_user2}
+    students = {dict_user1["name"]: {k: v for k, v in dict_user1.items() if k != 'name'},
+                dict_user2['name']: {k: v for k, v in dict_user2.items() if k != 'name'}}
 
     print(students)
 
 
-task2_4()
+# task2_4()
+
+
+def task3():
+    # Нужно добавить mft
+    lists = [(1001, 2), (1001, 1), (1003, 2), (1005, 2), (1001, 3), (1007, 1), (1007, 2), (1100, 2), (1003, 2),
+             (1001, 1)]
+
+    # Здесь в целом не нужно быстрая сортировка (алгоритм), но так как я уже это сделал не хочется удалить
+    def quick_sort(arr):
+        if len(arr) <= 1:
+            return arr
+
+        pivot = arr[0]
+        less = [x for x in arr[1:] if x[0] < pivot[0]]
+        equal = [x for x in arr[1:] if x[0] == pivot[0]]
+        greater = [x for x in arr[1:] if x[0] > pivot[0]]
+
+        return quick_sort(less) + equal + [pivot] + quick_sort(greater)
+
+    new_sorted_list = quick_sort(lists)
+
+    dauletsuper = {}
+
+    for i in new_sorted_list:
+        name = i[0]
+        find_element = i[-1]
+
+        count = new_sorted_list.count(i)
+
+        if i[0] not in dauletsuper:
+            dauletsuper[name] = {find_element: count, 'mft': find_element, 'lft': find_element}
+
+        else:
+            if find_element not in dauletsuper[name]:
+                dauletsuper[name][find_element] = count
+            else:
+                dauletsuper[name][find_element] += count
+
+        if count > dauletsuper[name][dauletsuper[name]['mft']]:
+            dauletsuper[name]['mft'] = find_element
+
+        if count < dauletsuper[name][dauletsuper[name]['lft']]:
+            dauletsuper[name]['lft'] = find_element
+
+    print(dauletsuper)
+
+
+task3()
