@@ -188,4 +188,12 @@ def task3():
     print(dauletsuper)
 
 
-task3()
+# task3()
+
+
+a= {
+    "name": "Daulet",
+    "labs": [76.5, 76, 100]
+}
+labs = a['labs'][2]
+print()
