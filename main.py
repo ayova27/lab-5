@@ -17,7 +17,7 @@ def task_2():
     print(lists)
 
 
-# task_2()
+task_2()
 
 def task_3():
     user_input = "Pulp Fiction".lower()
@@ -189,11 +189,3 @@ def task3():
 
 
 # task3()
-
-
-a= {
-    "name": "Daulet",
-    "labs": [76.5, 76, 100]
-}
-labs = a['labs'][2]
-print()
